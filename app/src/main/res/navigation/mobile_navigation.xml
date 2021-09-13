@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_tasks">
+
+    <fragment
+        android:id="@+id/nav_tasks"
+        android:name="com.hixtrik.tasktracker.ui.tasks.TasksFragment"
+        android:label="@string/is_emirleri"
+        tools:layout="@layout/fragment_tasks" >
+        <action
+            android:id="@+id/action_nav_tasks_to_taskDetailFragment"
+            app:destination="@id/nav_taskDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_taskDetailFragment"
+        android:name="com.hixtrik.tasktracker.ui.taskDetail.TaskDetailFragment"
+        android:label="@string/is_emri_detay"
+        tools:layout="@layout/fragment_task_detail" >
+        <argument
+            android:name="task"
+            app:argType="com.hixtrik.tasktracker.data.task.Task" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_taskAddFragment"
+        android:name="com.hixtrik.tasktracker.ui.taskAdd.TaskAddFragment"
+        android:label="@string/yeni_is_emri"
+        tools:layout="@layout/fragment_task_add" />
+</navigation>

@@ -1,0 +1,50 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">TaskTracker</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="oda_no">Oda No</string>
+    <string name="hizmet">Hizmet</string>
+    <string name="talep">Talep</string>
+    <string name="durum">Durum</string>
+    <string name="atanan_personel" tools:ignore="Typos">Atanan personel</string>
+    <string name="yapilan_is_aciklamasi">Yapılan İş Açıklaması</string>
+    <string name="uzerine_alan_personel" tools:ignore="Typos">Üzerine Alan Personel</string>
+    <string name="baslangic">Başlangıç</string>
+    <string name="bitis">Bitiş</string>
+    <string name="gecen_sure">Geçen Süre</string>
+    <string name="yeni_is_emri">Yeni İş Emri</string>
+    <string name="is_emri_detay">İş Emri Detay</string>
+    <string name="is_emirleri">İş Emirleri</string>
+    <string name="yapilacak_is">Yapılacak İş</string>
+    <string name="aciklama">Açıklama</string>
+    <string name="is_emrine_basla">İş Emrine Başla</string>
+    <string name="is_emrini_beklet">İş Emrini Beklet</string>
+    <string name="is_emrini_bitir">İş Emrini Bitir</string>
+    <string name="taha_arican">Taha Arıcan</string>
+    <string name="aricantaha06_gmail_com">aricantaha06@gmail.com</string>
+    <string name="dialog">Bu iş zaten başkası tarafından yapılıyor.</string>
+    <string name="olustur">Oluştur</string>
+    <string name="tasima">taşıma</string>
+    <string name="hasta_odaya_tasima_talebi">Hasta odaya taşıma talebi</string>
+    <string name="basla">Başla</string>
+    <string name="hasan_huseyin">Hasan Hüseyin</string>
+    <string name="_27_07_2021_10_30">27.07.2021 10:30</string>
+    <string name="_27_07_2021_n11_30">27.07.2021\n11:30</string>
+    <string-array name="service_array">
+        <item>Temizlik</item>
+        <item>Taşıma</item>
+        <item>Bina Arazisi</item>
+    </string-array>
+
+    <string-array name="cleaning_array">
+        <item>Alan Temizliği</item>
+        <item>Genel Kontrol</item>
+    </string-array>
+
+    <string-array name="transport_array">
+        <item>Hasta Taşıma</item>
+    </string-array>
+
+    <string-array name="building_land_array">
+        <item>Lamba Kırık</item>
+    </string-array>
+</resources>
