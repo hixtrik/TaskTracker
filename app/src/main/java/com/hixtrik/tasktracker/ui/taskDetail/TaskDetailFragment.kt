@@ -1,6 +1,5 @@
 package com.hixtrik.tasktracker.ui.taskDetail
 
-import android.app.AlertDialog
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
@@ -12,7 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.hixtrik.tasktracker.R
+import com.hixtrik.tasktracker.data.enums.Status
 import com.hixtrik.tasktracker.data.task.Task
+import com.hixtrik.tasktracker.data.user
 import com.hixtrik.tasktracker.databinding.FragmentTaskDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,11 +29,11 @@ class TaskDetailFragment : Fragment(R.layout.fragment_task_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentTaskDetailBinding.bind(view)
-        val task = Observer<Task> { newTask ->
+        val task = Observer<Task> { _ ->
             binding.apply {
                 tvService.text = viewModel.service
                 tvWorkDesc.text = viewModel.workToDo
-                tvStatus.text = viewModel.status
+                tvStatus.text = viewModel.status.toString()
                 tvEmployee.text = viewModel.employee
                 tvStartTime.text = viewModel.task.value?.startTimeFormatted
                 tvFinishTime.text = viewModel.task.value?.finishTimeFormatted
@@ -47,38 +48,68 @@ class TaskDetailFragment : Fragment(R.layout.fragment_task_detail) {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main, menu)
+        val opt = Observer<Task> {
+            when (viewModel.status) {
+                Status.Beklemede -> {
+                    menu.findItem(R.id.actWait).isVisible = false
+                    if (viewModel.startTime != null) {
+                        menu.findItem(R.id.actReturn).isVisible = true
+                        menu.findItem(R.id.actStart).isVisible = false
+                        menu.findItem(R.id.actFinish).isVisible = false
+                    } else {
+                        menu.findItem(R.id.actFinish).isVisible = false
+                        menu.findItem(R.id.actReturn).isVisible = false
+                        menu.findItem(R.id.actStart).isVisible = true
+                    }
+                }
+                Status.Tamamlandı -> {
+                    menu.findItem(R.id.actStart).isVisible = false
+                    menu.findItem(R.id.actWait).isVisible = false
+                    menu.findItem(R.id.actFinish).isVisible = false
+                    menu.findItem(R.id.actReturn).isVisible = false
+                }
+                Status.Yapılıyor -> {
+                    menu.findItem(R.id.actStart).isVisible = false
+                    menu.findItem(R.id.actReturn).isVisible = false
+                    menu.findItem(R.id.actWait).isVisible = true
+                    menu.findItem(R.id.actFinish).isVisible = true
+
+                }
+            }
+        }
+        viewModel.task.observe(viewLifecycleOwner, opt)
+
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.actStart -> {
-                if (viewModel.employee == "") {
-                    viewModel.startTime = System.currentTimeMillis()
-                    viewModel.employee = "Taha Arıcan"
-                    viewModel.status = "Yapılıyor"
-                    viewModel.onTaskUpdateClick()
-                } else {
-                    val builder = AlertDialog.Builder(context)
-                    builder.setMessage(getString(R.string.dialog))
-                    builder.setPositiveButton("Tamam") { dialogInterface, _ ->
-                        dialogInterface.dismiss()
-                    }
-                    builder.create()
-                    builder.show()
-                }
+                viewModel.startTime = System.currentTimeMillis()
+                viewModel.employee = user
+                viewModel.status = Status.Yapılıyor
+                viewModel.onTaskUpdateClick()
+                return true
             }
             R.id.actWait -> {
-                viewModel.status = "Beklemede"
+                viewModel.status = Status.Beklemede
                 viewModel.onTaskUpdateClick()
+                return true
+            }
+            R.id.actReturn -> {
+                viewModel.status = Status.Yapılıyor
+                viewModel.onTaskUpdateClick()
+                return true
             }
             R.id.actFinish -> {
                 viewModel.finishTime = System.currentTimeMillis()
-                viewModel.status = "Tamamlandı"
+                viewModel.status = Status.Tamamlandı
                 viewModel.onTaskUpdateClick()
+                return true
             }
+            else -> return super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
+
     }
 }
 

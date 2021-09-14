@@ -29,6 +29,7 @@
     <string name="hasan_huseyin">Hasan Hüseyin</string>
     <string name="_27_07_2021_10_30">27.07.2021 10:30</string>
     <string name="_27_07_2021_n11_30">27.07.2021\n11:30</string>
+    <string name="is_emrine_devam_et">İş Emrine Devam Et</string>
     <string-array name="service_array">
         <item>Temizlik</item>
         <item>Taşıma</item>

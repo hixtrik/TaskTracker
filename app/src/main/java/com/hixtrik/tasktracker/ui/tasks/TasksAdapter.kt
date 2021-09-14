@@ -39,7 +39,7 @@ class TasksAdapter(private val listener: OnItemClickListener) :
                 tvRoomNo.text = task.roomNo
                 tvService.text = task.service
                 tvWorkToDo.text = task.workToDo
-                tvStatus.text = task.status
+                tvStatus.text = task.status.toString()
                 tvEmployee.text = task.employee
             }
         }

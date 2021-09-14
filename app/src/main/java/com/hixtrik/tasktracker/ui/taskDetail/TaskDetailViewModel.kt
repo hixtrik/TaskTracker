@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hixtrik.tasktracker.data.enums.Status
 import com.hixtrik.tasktracker.data.task.Task
 import com.hixtrik.tasktracker.data.task.TaskDao
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -57,7 +58,7 @@ class TaskDetailViewModel @Inject constructor(
             employee = employee,
             startTime = startTime,
             finishTime = finishTime,
-            status = status
+            status = Status.valueOf(status.toString())
         )
         if (updateTask != null) {
             updateTask(updateTask)

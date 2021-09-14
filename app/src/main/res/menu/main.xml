@@ -7,6 +7,11 @@
         android:title="@string/is_emrine_basla"
         app:showAsAction="never" />
     <item
+        android:id="@+id/actReturn"
+        android:orderInCategory="100"
+        android:title="@string/is_emrine_devam_et"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/actWait"
         android:orderInCategory="100"
         android:title="@string/is_emrini_beklet"

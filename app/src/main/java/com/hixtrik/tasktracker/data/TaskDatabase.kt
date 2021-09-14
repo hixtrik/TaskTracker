@@ -3,6 +3,7 @@ package com.hixtrik.tasktracker.data
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.hixtrik.tasktracker.data.enums.Status
 import com.hixtrik.tasktracker.data.task.Task
 import com.hixtrik.tasktracker.data.task.TaskDao
 import com.hixtrik.tasktracker.di.ApplicationScope
@@ -27,8 +28,7 @@ abstract class TaskDatabase : RoomDatabase() {
                         "100",
                         "Temizlik",
                         "Alan Temizliği",
-                        "alana temizliği açıklaması",
-                        "Beklemede",
+                        "alana temizliği açıklaması", Status.Beklemede,
                         "Ali Veli"
                     )
                 )
@@ -38,7 +38,7 @@ abstract class TaskDatabase : RoomDatabase() {
                         "Taşıma",
                         "Hasta Taşıma",
                         "hasta taşıma açıklaması",
-                        "Beklemede",
+                        Status.Beklemede,
                         ""
                     )
                 )

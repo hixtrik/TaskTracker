@@ -3,6 +3,7 @@ package com.hixtrik.tasktracker.data.task
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.hixtrik.tasktracker.data.enums.Status
 import kotlinx.parcelize.Parcelize
 import java.text.DateFormat
 
@@ -13,7 +14,7 @@ data class Task(
     val service: String,
     val workToDo: String,
     val description: String,
-    val status: String,
+    val status: Status,
     var employee: String,
     var startTime: Long? = null,
     var finishTime: Long? = null,

@@ -3,6 +3,7 @@ package com.hixtrik.tasktracker.ui.taskAdd
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hixtrik.tasktracker.data.enums.Status
 import com.hixtrik.tasktracker.data.task.Task
 import com.hixtrik.tasktracker.data.task.TaskDao
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -48,7 +49,7 @@ class TaskAddViewModel @Inject constructor(
             workToDo = workToDo,
             description = description,
             employee = "",
-            status = "Beklemede"
+            status = Status.Beklemede
         )
         createTask(newTask)
     }
